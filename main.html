@@ -4,7 +4,72 @@
 
 <head>
 	<link rel="stylesheet" href="styles.css">
+</head><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Second Highest Finder</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+        input, button {
+            padding: 8px;
+            font-size: 16px;
+            margin-top: 10px;
+            width: 100%;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
 </head>
+<body>
+
+    <h2>Find the Second Highest Number</h2>
+    <p>Enter numbers separated by commas (e.g., 4,1,7,9):</p>
+
+    <input type="text" id="arrayInput" placeholder="Enter numbers">
+    <button onclick="Main()">Find Second Highest</button>
+
+    <div id="result"></div>
+
+    <script>
+        function secondHighest(arr) {
+            if (arr.length < 2) return -Infinity;
+
+            let highest = -Infinity;
+            let second = -Infinity;
+
+            for (let num of arr) {
+                if (num > highest) {
+                    second = highest;
+                    highest = num;
+                } else if (num > second && num < highest) {
+                    second = num;
+                }
+            }
+
+            return second === -Infinity ? -Infinity : second;
+        }
+
+        function Main() {
+            const input = document.getElementById("arrayInput").value;
+            const arr = input.split(",").map(num => parseInt(num.trim())).filter(num => !isNaN(num));
+
+            const result = secondHighest(arr);
+            document.getElementById("result").innerText = "Second Highest: " + result;
+        }
+    </script>
+
+</body>
+</html>
+
 
 <body>	
 	<script>
